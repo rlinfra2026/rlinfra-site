@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="../img/icon.png">
+<link rel="apple-touch-icon" href="../img/icon.png">
+<meta property="og:title" content="RL Infra">
+<meta property="og:image" content="https://rlinfra.com.br/img/og.jpg">
+<meta name="description" content="RL Infra: proyectos de infraestructura en Río de Janeiro, Brasil. Diseño geométrico, movimiento de tierras, drenaje pluvial, pavimentación y señalización vial.">
+<title>RL Infra</title>
+<link rel="alternate" hreflang="pt-BR" href="https://rlinfra.com.br/">
+<link rel="alternate" hreflang="en" href="https://rlinfra.com.br/en/">
+<link rel="alternate" hreflang="es" href="https://rlinfra.com.br/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: página única, faixas horizontais como pranchas de projeto; curvas de nível como textura do topo */
+:root {
+  --bg: #f3f5f8;
+  --surface: #ffffff;
+  --ink: #121a24;
+  --muted: #566273;
+  --line: #d5dbe3;
+  --brand: #0d1826;
+  --brand-ink: #ffffff;
+  --accent: #1a73e8;
+  --night: #090c10;
+  --night-ink: #e9eef5;
+  --night-muted: #a3afbf;
+  --contour: rgba(66, 150, 255, .16);
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c1117; --surface: #131a23; --ink: #e6ebf1; --muted: #9aa6b4; --line: #26303c;
+    --brand: #12233a; --brand-ink: #e9eef5; --accent: #4a9bff; --contour: rgba(74, 155, 255, .16);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c1117; --surface: #131a23; --ink: #e6ebf1; --muted: #9aa6b4; --line: #26303c;
+  --brand: #12233a; --brand-ink: #e9eef5; --accent: #4a9bff; --contour: rgba(74, 155, 255, .16);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--night); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--display); line-height: 1.08; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; font-stretch: 85%; letter-spacing: -.01em; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+p { margin: 0; }
+.eyebrow { font-family: var(--mono); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.lead { color: var(--muted); max-width: 60ch; }
+.btn { display: inline-flex; align-items: center; gap: .5em; padding: .8em 1.3em; border-radius: 4px; font-weight: 600; text-decoration: none; border: 2px solid transparent; cursor: pointer; font: inherit; font-weight: 600; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-ghost { border-color: var(--line); color: var(--ink); background: transparent; }
+.btn-ghost:hover { border-color: var(--brand); }
+
+/* Barra superior + navegação */
+.topbar { background: var(--brand); color: var(--brand-ink); font-size: .85rem; }
+.topbar .wrap { display: flex; flex-wrap: wrap; gap: .4rem 1.5rem; padding-block: .45rem; }
+.topbar span { opacity: .92; }
+header.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--night); border-bottom: 1px solid rgba(255,255,255,.08); }
+header.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .8rem; }
+.logo { display: flex; align-items: center; }
+.logo img { height: 46px; width: auto; display: block; -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, #000 70%, transparent 100%); mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, #000 70%, transparent 100%); }
+nav ul { display: flex; gap: 1.4rem; list-style: none; margin: 0; padding: 0; }
+nav a { text-decoration: none; font-weight: 500; color: var(--night-muted); }
+nav a:hover { color: var(--night-ink); }
+@media (max-width: 820px) { nav ul { display: none; } }
+header.nav nav { margin-inline: auto; }
+.lang { display: flex; gap: .15rem; font-family: var(--mono); font-size: .8rem; }
+.lang a { color: var(--night-muted); text-decoration: none; padding: .3rem .45rem; border-radius: 3px; }
+.lang a:hover { color: var(--night-ink); }
+.lang a[aria-current] { color: var(--night-ink); background: rgba(255,255,255,.1); }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; background: var(--night); color: var(--night-ink); }
+.hero .lead { color: var(--night-muted); }
+.hero .btn-ghost { color: var(--night-ink); border-color: rgba(255,255,255,.22); }
+.hero .btn-ghost:hover { border-color: var(--accent); }
+.hero-logo { width: 100%; max-width: 560px; height: auto; display: block; justify-self: end; -webkit-mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 62%, transparent 100%); }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero .wrap { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding-block: 4.5rem 4rem; align-items: center; }
+.hero h1 { font-size: clamp(2.2rem, 5vw, 3.7rem); font-weight: 900; font-stretch: 78%; letter-spacing: -.015em; margin-block: .6rem 1.2rem; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.8rem; }
+@media (max-width: 820px) { .hero .wrap { grid-template-columns: 1fr; gap: 2rem; padding-block: 2.5rem 3rem; } .hero-logo { order: -1; justify-self: start; max-width: 420px; } }
+@media (max-width: 480px) { .logo img { height: 38px; } header.nav .btn { padding: .6em .9em; font-size: .9rem; } }
+
+section { padding-block: 5rem; scroll-margin-top: 80px; }
+.sec-head { display: grid; gap: .8rem; margin-bottom: 2.6rem; max-width: 720px; }
+
+/* Clientes */
+.clients { padding-block: 2.2rem; border-bottom: 1px solid var(--line); }
+.clients .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.5rem; }
+.clients p { font-family: var(--mono); font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.client { font-family: var(--display); font-weight: 700; font-stretch: 90%; color: var(--muted); opacity: .75; font-size: 1.1rem; }
+
+/* Diferenciais */
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.why { padding: 1.8rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; gap: .6rem; align-content: start; min-width: 0; }
+.why p { color: var(--muted); }
+@media (max-width: 900px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .why-grid { grid-template-columns: 1fr; } }
+
+/* Serviços */
+.services { background: var(--surface); border-block: 1px solid var(--line); }
+.svc-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 3rem; }
+.svc { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem; padding-block: 1.3rem; border-bottom: 1px solid var(--line); min-width: 0; }
+.svc .code { font-family: var(--mono); font-size: .8rem; color: var(--accent); padding-top: .2rem; }
+.svc p { color: var(--muted); font-size: .95rem; margin-top: .25rem; }
+@media (max-width: 760px) { .svc-list { grid-template-columns: 1fr; } }
+
+/* Sobre */
+.about .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 3.5rem; align-items: center; }
+.portrait { margin: 0; max-width: 440px; width: 100%; display: grid; gap: .8rem; }
+.portrait img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; display: block; }
+.portrait figcaption { display: grid; gap: .1rem; }
+.portrait figcaption span { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
+.about .text { display: grid; gap: 1rem; }
+.about .text p { color: var(--muted); max-width: 60ch; }
+.figures { display: flex; flex-wrap: wrap; gap: 2.5rem; margin-top: .8rem; }
+.figures strong { display: block; font-family: var(--display); font-size: 2.2rem; font-weight: 800; font-stretch: 80%; color: var(--accent); font-variant-numeric: tabular-nums; }
+.figures span { font-size: .9rem; color: var(--muted); }
+@media (max-width: 820px) { .about .wrap { grid-template-columns: 1fr; } .portrait { max-width: 360px; } }
+
+/* Projetos */
+.proj-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.proj { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; min-width: 0; }
+.proj > a { display: block; border-bottom: 1px solid var(--line); background: var(--bg); }
+.proj > a img { display: block; width: 100%; height: auto; }
+.proj svg { display: block; width: 100%; height: auto; background: var(--bg); border-bottom: 1px solid var(--line); }
+.proj .body { padding: 1.2rem; display: grid; gap: .4rem; align-content: start; }
+.proj .meta { font-family: var(--mono); font-size: .78rem; color: var(--muted); }
+.proj p { color: var(--muted); font-size: .95rem; }
+.tag-ex { justify-self: start; font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; border: 1px solid var(--line); padding: .1rem .45rem; border-radius: 3px; color: var(--muted); }
+@media (max-width: 900px) { .proj-grid { grid-template-columns: 1fr; } }
+
+/* Contato */
+.contact { background: var(--brand); color: var(--brand-ink); }
+.contact .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; }
+.contact .eyebrow { color: var(--brand-ink); opacity: .8; }
+.contact .lead { color: var(--brand-ink); opacity: .85; }
+.contact ul { list-style: none; padding: 0; margin: 1.8rem 0 0; display: grid; gap: .9rem; }
+.contact li small { display: block; font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; opacity: .75; }
+form { background: var(--surface); color: var(--ink); border-radius: 6px; padding: 1.8rem; display: grid; gap: 1rem; min-width: 0; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+label { display: grid; gap: .35rem; font-size: .88rem; font-weight: 500; }
+input, select, textarea { font: inherit; padding: .7rem .8rem; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); color: var(--ink); width: 100%; }
+textarea { min-height: 110px; resize: vertical; }
+.form-note { font-size: .85rem; color: var(--muted); }
+.form-out { font-size: .9rem; background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: .8rem; white-space: pre-wrap; }
+@media (max-width: 820px) { .contact .wrap { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .row { grid-template-columns: 1fr; } }
+
+footer { padding-block: 2rem; font-size: .88rem; color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <a href="https://wa.me/5521965968287" style="text-decoration:none">WhatsApp +55 21 96596-8287</a>
+    <span>ronaldolima.infra@gmail.com</span>
+    <span>Río de Janeiro, Brasil · atendemos en todo Brasil</span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#topo" aria-label="RL Infra, inicio">
+      <img src="../img/logo-sm.webp" alt="RL Infra" width="276" height="120">
+    </a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="#servicos">Servicios</a></li>
+        <li><a href="#projetos">Proyectos</a></li>
+        <li><a href="#sobre">La empresa</a></li>
+        <li><a href="#contato">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="lang" aria-label="Idioma">
+      <a href="/" hreflang="pt-BR">PT</a>
+      <a href="/en/" hreflang="en">EN</a>
+      <a href="/es/" hreflang="es" aria-current="true">ES</a>
+    </div>
+    <a class="btn btn-primary" href="#contato">Solicitar presupuesto</a>
+  </div>
+</header>
+
+<main id="topo">
+  <div class="hero">
+    <canvas id="contours" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Ingeniería de infraestructura · Río de Janeiro</p>
+        <h1>Proyectos de <em>vías urbanas, carreteras, accesos viales y loteos</em>.</h1>
+        <p class="lead">Diseño geométrico, movimiento de tierras, drenaje pluvial, pavimentación y señalización vial desarrollados de forma integrada en BIM, con documentación lista para la aprobación de los organismos públicos.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#contato">Solicitar presupuesto</a>
+          <a class="btn btn-ghost" href="#projetos">Ver proyectos</a>
+        </div>
+      </div>
+      <img class="hero-logo" src="../img/logo.webp" alt="Logotipo de RL Infra" width="1200" height="521">
+    </div>
+  </div>
+
+  <div class="clients">
+    <div class="wrap">
+      <p>Quienes ya confiaron en nosotros</p>
+      <span class="client">Cliente 1</span>
+      <span class="client">Cliente 2</span>
+      <span class="client">Cliente 3</span>
+      <span class="client">Cliente 4</span>
+      <span class="client">Cliente 5</span>
+    </div>
+  </div>
+
+  <section id="diferenciais">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Por qué elegirnos</p>
+        <h2>Un proyecto bien coordinado evita correcciones costosas durante la obra.</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why"><h3>Metodología BIM</h3><p>Todas las disciplinas en un único modelo 3D. Cada cambio se refleja en todos los planos, sin retrabajo.</p></div>
+        <div class="why"><h3>Listo para aprobación</h3><p>Proyectos elaborados según las exigencias de los municipios y de los organismos viales y de tránsito, lo que agiliza la aprobación.</p></div>
+        <div class="why"><h3>Solución completa</h3><p>Del trazado geométrico a la señalización, con un único responsable técnico desde el estudio preliminar hasta el proyecto ejecutivo.</p></div>
+        <div class="why"><h3>Compatibilización</h3><p>Verificación de interferencias entre rasante, drenaje y pavimento antes de que se conviertan en problemas en la obra.</p></div>
+        <div class="why"><h3>Cantidades precisas</h3><p>Volúmenes de corte y relleno y cantidades de materiales extraídos directamente del modelo, listos para el presupuesto.</p></div>
+        <div class="why"><h3>Visualización 3D</h3><p>Imágenes del emprendimiento que facilitan la presentación a organismos aprobadores, inversores y clientes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos" class="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Nuestros servicios</p>
+        <h2>Cinco disciplinas integradas en un solo proyecto.</h2>
+      </div>
+      <ul class="svc-list">
+        <li class="svc"><span class="code">GEO</span><div><h3>Diseño geométrico</h3><p>Trazado en planta y perfil, rasantes, secciones tipo e intersecciones.</p></div></li>
+        <li class="svc"><span class="code">TER</span><div><h3>Movimiento de tierras</h3><p>Plataformas, taludes y optimización del equilibrio entre corte y relleno.</p></div></li>
+        <li class="svc"><span class="code">DRE</span><div><h3>Drenaje pluvial</h3><p>Microdrenaje, alcantarillas, sumideros y disipadores de energía.</p></div></li>
+        <li class="svc"><span class="code">PAV</span><div><h3>Pavimentación</h3><p>Diseño de pavimentos, aceras y veredas.</p></div></li>
+        <li class="svc"><span class="code">SIN</span><div><h3>Señalización vial</h3><p>Señalización horizontal y vertical según los manuales del CONTRAN de Brasil.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="sobre" class="about">
+    <div class="wrap">
+      <figure class="portrait"><img src="../img/ronaldo.webp" alt="Ing. Ronaldo Lima, responsable técnico de RL Infra" width="800" height="1000" loading="lazy"><figcaption><strong>Ing. Ronaldo Lima</strong><span>Responsable técnico · CREA-RJ 2025105984 · RNP 2023382920</span></figcaption></figure>
+      <div class="text">
+        <p class="eyebrow">Quién está al frente</p>
+        <h2>Precisión técnica y enfoque en costos, del estudio al proyecto ejecutivo.</h2>
+        <p>Ingeniero civil egresado de la Universidad del Estado de Río de Janeiro (UERJ), con experiencia en proyectos de infraestructura urbana y vial, y especialización en diseño geométrico, movimiento de tierras y drenaje.</p>
+        <p>Trabaja en proyectos de distintos tamaños y niveles de complejidad, con metodología BIM y herramientas avanzadas de modelado para entregar soluciones eficientes, técnicamente precisas y con costos optimizados.</p>
+        <p>Tiene trabajos de investigación científica reconocidos en Brasil y en el exterior. Al frente de RL Infra, su compromiso es transformar los desafíos de ingeniería en soluciones inteligentes, con proyectos de calidad, innovadores y confiables.</p>
+        <div class="figures">
+          <div><strong>UERJ</strong><span>Ingeniería Civil</span></div>
+          <div><strong>BIM</strong><span>modelado integrado</span></div>
+          <div><strong>Investigación</strong><span>reconocida en Brasil y en el exterior</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Proyectos realizados</p>
+        <h2>Trabajos desarrollados.</h2>
+        <p class="lead">Haga clic en la imagen para ver el plano en tamaño completo.</p>
+      </div>
+      <div class="proj-grid">
+        <article class="proj">
+          <a href="../img/proj-geometrico.webp" target="_blank" rel="noopener"><img src="../img/proj-geometrico.webp" alt="Planta del diseño geométrico de vía urbana con viaducto sobre ferrocarril y ramales de intersección" width="1800" height="682" loading="lazy"></a>
+          <div class="body"><h3>Vía urbana con viaducto e intersecciones</h3><p class="meta">Diseño geométrico</p><p>Diseño geométrico de vía urbana con cruce de la línea férrea por viaducto, ramales de intersección, carriles y transiciones, integrado a muros de suelo reforzado y barreras de protección.</p></div>
+        </article>
+        <article class="proj">
+          <a href="../img/proj-terraplenagem.webp" target="_blank" rel="noopener"><img src="../img/proj-terraplenagem.webp" alt="Planta del movimiento de tierras de acceso vial con viaducto sobre ferrocarril" width="1600" height="653" loading="lazy"></a>
+          <div class="body"><h3>Acceso vial a desnivel con viaducto</h3><p class="meta">Movimiento de tierras</p><p>Movimiento de tierras de los ramales de acceso y del cruce del ferrocarril por viaducto, con definición de cortes, rellenos y taludes a lo largo del trazado.</p></div>
+        </article>
+        <article class="proj">
+          <a href="../img/proj-drenagem.webp" target="_blank" rel="noopener"><img src="../img/proj-drenagem.webp" alt="Modelo 3D de la red de drenaje pluvial a lo largo de una vía con retorno" width="1600" height="777" loading="lazy"></a>
+          <div class="body"><h3>Red de drenaje pluvial en modelo 3D</h3><p class="meta">Drenaje pluvial · BIM</p><p>Red de drenaje pluvial modelada en 3D a lo largo de una vía con retorno, con tuberías, pozos de inspección y sumideros compatibilizados con la rasante y la superficie del terreno.</p></div>
+        </article>
+        <article class="proj">
+          <a href="../img/proj-modelo3d.webp" target="_blank" rel="noopener"><img src="../img/proj-modelo3d.webp" alt="Modelado 3D de intersección vial sobre el terreno" width="987" height="249" loading="lazy"></a>
+          <div class="body"><h3>Modelado de intersección</h3><p class="meta">Modelado BIM · visualización 3D</p><p>Modelado 3D de intersección vial sobre la superficie del terreno, con taludes de corte y relleno.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="contact">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Contacto</p>
+        <h2>Cuéntenos qué necesita proyectar.</h2>
+        <p class="lead" style="margin-top:1rem">Envíe la información de su emprendimiento y reciba una propuesta personalizada.</p>
+        <ul>
+          <li><small>WhatsApp</small><a href="https://wa.me/5521965968287">+55 21 96596-8287</a></li>
+          <li><small>E-mail</small>ronaldolima.infra@gmail.com</li>
+          <li><small>Ubicación</small>Río de Janeiro, Brasil</li>
+        </ul>
+      </div>
+      <form id="orcamento" novalidate>
+        <div class="row">
+          <label for="f-nome">Nombre<input id="f-nome" name="nome" required placeholder="Su nombre"></label>
+          <label for="f-empresa">Empresa<input id="f-empresa" name="empresa" placeholder="Opcional"></label>
+        </div>
+        <div class="row">
+          <label for="f-tel">WhatsApp<input id="f-tel" name="tel" inputmode="tel" placeholder="+55 21 9 0000-0000"></label>
+          <label for="f-tipo">Tipo de proyecto
+            <select id="f-tipo" name="tipo">
+              <option>Acceso vial</option>
+              <option>Vía urbana</option>
+              <option>Carretera</option>
+              <option>Loteo</option>
+              <option>Otro</option>
+            </select>
+          </label>
+        </div>
+        <label for="f-msg">Sobre el proyecto<textarea id="f-msg" name="msg" placeholder="Ciudad, longitud o área aproximada, plazo deseado..."></textarea></label>
+        <button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>
+        <p class="form-note">WhatsApp se abre con su mensaje listo para enviar.</p>
+        <div class="form-out" id="form-out" hidden></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 RL Infra · CNPJ 61.288.184/0001-21</span>
+    <span>Responsable técnico: Ing. Ronaldo Lima · CREA-RJ 2025105984 · RNP 2023382920</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Curvas de nível desenhadas no fundo do topo
+  const c = document.getElementById('contours');
+  const ctx = c.getContext('2d');
+  // Terreno fixo (morros gaussianos + rampa suave); as curvas são isolinhas
+  // desse campo, geradas por marching squares, por isso nunca se cruzam
+  const hills = [
+    [0.80, 0.30, 0.22, 1.00], [0.62, 0.78, 0.18, 0.55], [0.95, 0.85, 0.15, 0.45],
+    [0.45, 0.15, 0.16, 0.35], [0.70, 0.55, 0.10, -0.30], [0.20, 0.70, 0.25, 0.25]
+  ];
+  function height(u, v, aspect) {
+    let z = 0.12 * u;
+    for (const [hx, hy, sd, a] of hills) {
+      const dx = (u - hx) / sd, dy = (v - hy) * aspect / sd;
+      z += a * Math.exp(-(dx * dx + dy * dy) / 2);
+    }
+    return z;
+  }
+  function draw() {
+    const r = c.getBoundingClientRect(), d = window.devicePixelRatio || 1;
+    c.width = r.width * d; c.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+    ctx.clearRect(0, 0, r.width, r.height);
+    ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--contour');
+    const step = 6, nx = Math.ceil(r.width / step) + 1, ny = Math.ceil(r.height / step) + 1;
+    const aspect = r.height / Math.max(r.width, 1);
+    const z = new Float32Array(nx * ny);
+    let lo = Infinity, hi = -Infinity;
+    for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) {
+      const h = height(i * step / r.width, j * step / r.height, aspect);
+      z[j * nx + i] = h; if (h < lo) lo = h; if (h > hi) hi = h;
+    }
+    const levels = 30, eq = (hi - lo) / levels;
+    for (let k = 1; k < levels; k++) {
+      const t = lo + k * eq;
+      ctx.lineWidth = k % 5 === 0 ? 1.5 : 0.7;
+      ctx.beginPath();
+      for (let j = 0; j < ny - 1; j++) for (let i = 0; i < nx - 1; i++) {
+        const a = z[j * nx + i], b = z[j * nx + i + 1], cc = z[(j + 1) * nx + i + 1], dd = z[(j + 1) * nx + i];
+        const idx = (a > t) | ((b > t) << 1) | ((cc > t) << 2) | ((dd > t) << 3);
+        if (idx === 0 || idx === 15) continue;
+        const x0 = i * step, y0 = j * step;
+        const top = [x0 + step * (t - a) / (b - a), y0];
+        const right = [x0 + step, y0 + step * (t - b) / (cc - b)];
+        const bottom = [x0 + step * (t - dd) / (cc - dd), y0 + step];
+        const left = [x0, y0 + step * (t - a) / (dd - a)];
+        const seg = (p, q) => { ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); };
+        switch (idx) {
+          case 1: case 14: seg(left, top); break;
+          case 2: case 13: seg(top, right); break;
+          case 3: case 12: seg(left, right); break;
+          case 4: case 11: seg(right, bottom); break;
+          case 6: case 9: seg(top, bottom); break;
+          case 7: case 8: seg(left, bottom); break;
+          case 5: seg(left, top); seg(right, bottom); break;
+          case 10: seg(top, right); seg(left, bottom); break;
+        }
+      }
+      ctx.stroke();
+    }
+  }
+  draw();
+  addEventListener('resize', draw);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+  new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  // Formulário: monta a mensagem do WhatsApp
+  const form = document.getElementById('orcamento'), out = document.getElementById('form-out');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const f = new FormData(form);
+    if (!String(f.get('nome')).trim()) { out.hidden = false; out.textContent = 'Ingrese su nombre para armar el mensaje.'; return; }
+    const msg = '¡Hola! Soy ' + f.get('nome') + (f.get('empresa') ? ' (' + f.get('empresa') + ')' : '') +
+      '. Me gustaría un presupuesto para: ' + f.get('tipo') + '.' + (f.get('msg') ? '\n' + f.get('msg') : '');
+    out.hidden = true;
+    window.location.href = 'https://wa.me/5521965968287?text=' + encodeURIComponent(msg);
+  });
+})();
+</script>
+</body>
+</html>
