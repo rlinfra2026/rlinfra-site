@@ -342,20 +342,58 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   // Curvas de nível desenhadas no fundo do topo
   const c = document.getElementById('contours');
   const ctx = c.getContext('2d');
+  // Terreno fixo (morros gaussianos + rampa suave); as curvas são isolinhas
+  // desse campo, geradas por marching squares, por isso nunca se cruzam
+  const hills = [
+    [0.80, 0.30, 0.22, 1.00], [0.62, 0.78, 0.18, 0.55], [0.95, 0.85, 0.15, 0.45],
+    [0.45, 0.15, 0.16, 0.35], [0.70, 0.55, 0.10, -0.30], [0.20, 0.70, 0.25, 0.25]
+  ];
+  function height(u, v, aspect) {
+    let z = 0.12 * u;
+    for (const [hx, hy, sd, a] of hills) {
+      const dx = (u - hx) / sd, dy = (v - hy) * aspect / sd;
+      z += a * Math.exp(-(dx * dx + dy * dy) / 2);
+    }
+    return z;
+  }
   function draw() {
     const r = c.getBoundingClientRect(), d = window.devicePixelRatio || 1;
     c.width = r.width * d; c.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0);
     ctx.clearRect(0, 0, r.width, r.height);
     ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--contour');
-    const cx = r.width * 0.82, cy = r.height * 0.35;
-    for (let k = 1; k <= 22; k++) {
-      ctx.lineWidth = k % 5 === 0 ? 1.6 : 0.8;
+    const step = 6, nx = Math.ceil(r.width / step) + 1, ny = Math.ceil(r.height / step) + 1;
+    const aspect = r.height / Math.max(r.width, 1);
+    const z = new Float32Array(nx * ny);
+    let lo = Infinity, hi = -Infinity;
+    for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) {
+      const h = height(i * step / r.width, j * step / r.height, aspect);
+      z[j * nx + i] = h; if (h < lo) lo = h; if (h > hi) hi = h;
+    }
+    const levels = 30, eq = (hi - lo) / levels;
+    for (let k = 1; k < levels; k++) {
+      const t = lo + k * eq;
+      ctx.lineWidth = k % 5 === 0 ? 1.5 : 0.7;
       ctx.beginPath();
-      for (let a = 0; a <= Math.PI * 2 + 0.05; a += 0.05) {
-        const wob = 1 + 0.18 * Math.sin(3 * a + k * 0.35) + 0.08 * Math.cos(5 * a - k * 0.2);
-        const rad = k * 26 * wob;
-        const x = cx + Math.cos(a) * rad * 1.35, y = cy + Math.sin(a) * rad;
-        a === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      for (let j = 0; j < ny - 1; j++) for (let i = 0; i < nx - 1; i++) {
+        const a = z[j * nx + i], b = z[j * nx + i + 1], cc = z[(j + 1) * nx + i + 1], dd = z[(j + 1) * nx + i];
+        const idx = (a > t) | ((b > t) << 1) | ((cc > t) << 2) | ((dd > t) << 3);
+        if (idx === 0 || idx === 15) continue;
+        const x0 = i * step, y0 = j * step;
+        const top = [x0 + step * (t - a) / (b - a), y0];
+        const right = [x0 + step, y0 + step * (t - b) / (cc - b)];
+        const bottom = [x0 + step * (t - dd) / (cc - dd), y0 + step];
+        const left = [x0, y0 + step * (t - a) / (dd - a)];
+        const seg = (p, q) => { ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); };
+        switch (idx) {
+          case 1: case 14: seg(left, top); break;
+          case 2: case 13: seg(top, right); break;
+          case 3: case 12: seg(left, right); break;
+          case 4: case 11: seg(right, bottom); break;
+          case 6: case 9: seg(top, bottom); break;
+          case 7: case 8: seg(left, bottom); break;
+          case 5: seg(left, top); seg(right, bottom); break;
+          case 10: seg(top, right); seg(left, bottom); break;
+        }
       }
       ctx.stroke();
     }
