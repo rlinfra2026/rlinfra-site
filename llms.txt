@@ -1,0 +1,47 @@
+# RL Infra
+
+> RL Infra é uma empresa de engenharia civil do Rio de Janeiro (RJ, Brasil) especializada em projetos de infraestrutura viária e urbana desenvolvidos em BIM: projeto geométrico, terraplenagem, drenagem pluvial, pavimentação e sinalização viária para vias urbanas, rodovias, acessos viários e loteamentos. Atende clientes em todo o Brasil.
+
+RL Infra is a civil engineering firm based in Rio de Janeiro, Brazil, that designs road and urban infrastructure in BIM (geometric road design, earthworks, stormwater drainage, pavement and road signage) for urban roads, highways, road access and land subdivisions. It serves clients across Brazil.
+
+## Dados da empresa
+
+- Nome: RL Infra
+- CNPJ: 61.288.184/0001-21
+- Sede: Rio de Janeiro, RJ, Brasil (atendimento em todo o Brasil)
+- Site: https://rlinfra.com.br/
+- WhatsApp: +55 21 96596-8287 (https://wa.me/5521965968287)
+- E-mail: ronaldolima.infra@gmail.com
+- Responsável técnico: Eng. Ronaldo Lima, engenheiro civil formado pela UERJ, CREA-RJ 2025105984, RNP 2023382920
+
+## Serviços
+
+- Projeto geométrico: traçado horizontal e vertical, greides, seções-tipo e interseções.
+- Terraplenagem: platôs, taludes e otimização do equilíbrio entre corte e aterro.
+- Drenagem pluvial: microdrenagem, galerias, bocas de lobo e dispositivos de dissipação.
+- Pavimentação: dimensionamento de pavimentos, passeios e calçadas.
+- Sinalização viária: sinalização horizontal e vertical conforme os manuais do CONTRAN.
+
+## Como trabalha
+
+- Metodologia BIM: todas as disciplinas em um único modelo 3D, com compatibilização entre greide, drenagem e pavimento.
+- Projetos elaborados conforme as exigências de prefeituras e órgãos rodoviários e de trânsito.
+- Um único responsável técnico do estudo preliminar ao projeto executivo.
+- Quantitativos de corte, aterro e materiais extraídos do modelo.
+
+## Projetos realizados
+
+- Via urbana com viaduto e interseções: projeto geométrico com transposição de linha férrea por viaduto, ramos de interseção, muros de solo reforçado e barreiras de proteção.
+- Acesso viário em desnível com viaduto: terraplenagem dos ramos de acesso e da transposição da ferrovia.
+- Rede de drenagem pluvial em modelo 3D ao longo de via com retorno.
+- Modelagem 3D de interseção viária com taludes de corte e aterro.
+
+## Páginas
+
+- [Site em português](https://rlinfra.com.br/): página principal com serviços, projetos, apresentação do responsável técnico e contato.
+- [English version](https://rlinfra.com.br/en/): same content in English.
+- [Versión en español](https://rlinfra.com.br/es/): mismo contenido en español.
+
+## Contato para orçamento
+
+Pedidos de orçamento pelo WhatsApp +55 21 96596-8287 ou pelo formulário em https://rlinfra.com.br/#contato, informando cidade, extensão ou área aproximada e prazo desejado.
