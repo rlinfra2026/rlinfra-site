@@ -204,7 +204,7 @@ section { padding-block: 5rem; scroll-margin-top: 80px; }
 @media (max-width: 820px) { .about .wrap { grid-template-columns: 1fr; } .portrait { max-width: 360px; } }
 
 /* Projetos */
-.proj-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 .proj { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; min-width: 0; }
 .proj > a { display: block; border-bottom: 1px solid var(--line); background: var(--bg); }
 .proj > a img { display: block; width: 100%; height: auto; }
@@ -351,23 +351,18 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <div class="sec-head">
         <p class="eyebrow">Proyectos realizados</p>
         <h2>Trabajos desarrollados.</h2>
-        <p class="lead">Haga clic en la imagen para ver el plano en tamaño completo.</p>
       </div>
       <div class="proj-grid">
         <article class="proj">
-          <a href="../img/proj-geometrico.webp" target="_blank" rel="noopener"><img src="../img/proj-geometrico.webp" alt="Planta del diseño geométrico de vía urbana con viaducto sobre ferrocarril y ramales de intersección" width="1800" height="682" loading="lazy"></a>
           <div class="body"><h3>Vía urbana con viaducto e intersecciones</h3><p class="meta">Diseño geométrico</p><p>Diseño geométrico de vía urbana con cruce de la línea férrea por viaducto, ramales de intersección, carriles y transiciones, integrado a muros de suelo reforzado y barreras de protección.</p></div>
         </article>
         <article class="proj">
-          <a href="../img/proj-terraplenagem.webp" target="_blank" rel="noopener"><img src="../img/proj-terraplenagem.webp" alt="Planta del movimiento de tierras de acceso vial con viaducto sobre ferrocarril" width="1600" height="653" loading="lazy"></a>
           <div class="body"><h3>Acceso vial a desnivel con viaducto</h3><p class="meta">Movimiento de tierras</p><p>Movimiento de tierras de los ramales de acceso y del cruce del ferrocarril por viaducto, con definición de cortes, rellenos y taludes a lo largo del trazado.</p></div>
         </article>
         <article class="proj">
-          <a href="../img/proj-drenagem.webp" target="_blank" rel="noopener"><img src="../img/proj-drenagem.webp" alt="Modelo 3D de la red de drenaje pluvial a lo largo de una vía con retorno" width="1600" height="777" loading="lazy"></a>
           <div class="body"><h3>Red de drenaje pluvial en modelo 3D</h3><p class="meta">Drenaje pluvial · BIM</p><p>Red de drenaje pluvial modelada en 3D a lo largo de una vía con retorno, con tuberías, pozos de inspección y sumideros compatibilizados con la rasante y la superficie del terreno.</p></div>
         </article>
         <article class="proj">
-          <a href="../img/proj-modelo3d.webp" target="_blank" rel="noopener"><img src="../img/proj-modelo3d.webp" alt="Modelado 3D de intersección vial sobre el terreno" width="987" height="249" loading="lazy"></a>
           <div class="body"><h3>Modelado de intersección</h3><p class="meta">Modelado BIM · visualización 3D</p><p>Modelado 3D de intersección vial sobre la superficie del terreno, con taludes de corte y relleno.</p></div>
         </article>
       </div>

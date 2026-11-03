@@ -204,7 +204,7 @@ section { padding-block: 5rem; scroll-margin-top: 80px; }
 @media (max-width: 820px) { .about .wrap { grid-template-columns: 1fr; } .portrait { max-width: 360px; } }
 
 /* Projetos */
-.proj-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 .proj { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; min-width: 0; }
 .proj > a { display: block; border-bottom: 1px solid var(--line); background: var(--bg); }
 .proj > a img { display: block; width: 100%; height: auto; }
@@ -351,23 +351,18 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <div class="sec-head">
         <p class="eyebrow">Completed projects</p>
         <h2>Selected work.</h2>
-        <p class="lead">Click an image to see the drawing at full size.</p>
       </div>
       <div class="proj-grid">
         <article class="proj">
-          <a href="../img/proj-geometrico.webp" target="_blank" rel="noopener"><img src="../img/proj-geometrico.webp" alt="Plan of the geometric design of an urban road with a railway overpass and intersection ramps" width="1800" height="682" loading="lazy"></a>
           <div class="body"><h3>Urban road with overpass and intersections</h3><p class="meta">Geometric road design</p><p>Geometric design of an urban road crossing the railway on an overpass, with intersection ramps, lanes and transitions, integrated with reinforced soil walls and safety barriers.</p></div>
         </article>
         <article class="proj">
-          <a href="../img/proj-terraplenagem.webp" target="_blank" rel="noopener"><img src="../img/proj-terraplenagem.webp" alt="Earthworks plan for a grade-separated road access with a railway overpass" width="1600" height="653" loading="lazy"></a>
           <div class="body"><h3>Grade-separated road access with overpass</h3><p class="meta">Earthworks</p><p>Earthworks for the access ramps and the railway crossing on an overpass, defining cuts, fills and slopes along the alignment.</p></div>
         </article>
         <article class="proj">
-          <a href="../img/proj-drenagem.webp" target="_blank" rel="noopener"><img src="../img/proj-drenagem.webp" alt="3D model of the stormwater drainage network along a road with a turnaround" width="1600" height="777" loading="lazy"></a>
           <div class="body"><h3>Stormwater drainage network in 3D</h3><p class="meta">Stormwater drainage · BIM</p><p>Stormwater drainage network modeled in 3D along a road with a turnaround, with pipes, manholes and inlets coordinated with the road profile and the ground surface.</p></div>
         </article>
         <article class="proj">
-          <a href="../img/proj-modelo3d.webp" target="_blank" rel="noopener"><img src="../img/proj-modelo3d.webp" alt="3D model of a road intersection on the terrain" width="987" height="249" loading="lazy"></a>
           <div class="body"><h3>Intersection modeling</h3><p class="meta">BIM modeling · 3D visualization</p><p>3D model of a road intersection on the ground surface, with cut and fill slopes.</p></div>
         </article>
       </div>
