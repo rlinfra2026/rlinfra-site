@@ -29,6 +29,12 @@ RL Infra is a civil engineering firm based in Rio de Janeiro, Brazil, that desig
 - Um único responsável técnico do estudo preliminar ao projeto executivo.
 - Quantitativos de corte, aterro e materiais extraídos do modelo.
 
+## Clientes
+
+- PLANAVE
+- RUMO G23
+- Estado do Rio de Janeiro
+
 ## Projetos realizados
 
 - Via urbana com viaduto e interseções: projeto geométrico com transposição de linha férrea por viaduto, ramos de interseção, muros de solo reforçado e barreiras de proteção.
