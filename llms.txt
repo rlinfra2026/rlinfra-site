@@ -32,7 +32,8 @@ RL Infra is a civil engineering firm based in Rio de Janeiro, Brazil, that desig
 ## Clientes
 
 - PLANAVE
-- RUMO G23
+- RUMO
+- G23
 - Estado do Rio de Janeiro
 - LIGGA
 - CEDRO
