@@ -176,6 +176,8 @@ section { padding-block: 5rem; scroll-margin-top: 80px; }
 /* Logos de clientes têm fundo branco, então o cartão é branco nos dois temas */
 .client { display: flex; align-items: center; justify-content: center; height: 72px; min-width: 120px; padding: .5rem 1.2rem; background: #fff; border: 1px solid var(--line); border-radius: 4px; font-family: var(--display); font-weight: 800; font-stretch: 90%; font-size: 1.1rem; letter-spacing: .02em; color: #2b3542; }
 .client img { display: block; width: auto; height: auto; max-height: 48px; max-width: 200px; }
+.client-fill { padding: 0; overflow: hidden; background: #003563; }
+.client-fill img { max-height: 100%; height: 100%; max-width: none; }
 @media (max-width: 480px) { .client { height: 60px; min-width: 0; flex: 1 1 40%; } .client img { max-height: 40px; max-width: 100%; } }
 
 /* Diferenciais */
@@ -291,11 +293,11 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <div class="wrap">
       <p>Quem já confiou em nós</p>
       <span class="client"><img src="img/clientes/planave.png" alt="PLANAVE S.A. Estudos e Projetos de Engenharia" width="200" height="35" loading="lazy"></span>
-      <span class="client">RUMO</span>
+      <span class="client client-fill"><img src="img/clientes/rumo.png" alt="Rumo" width="396" height="158" loading="lazy"></span>
       <span class="client"><img src="img/clientes/g23.png" alt="G23" width="274" height="106" loading="lazy" style="max-height:34px"></span>
       <span class="client"><img src="img/clientes/governo-rj.png" alt="Governo do Estado do Rio de Janeiro, Secretaria de Habitação" width="162" height="137" loading="lazy"></span>
-      <span class="client">LIGGA</span>
-      <span class="client">CEDRO</span>
+      <span class="client"><img src="img/clientes/ligga.png" alt="Ligga" width="270" height="74" loading="lazy" style="max-height:34px"></span>
+      <span class="client"><img src="img/clientes/cedro.png" alt="Cedro Mineração" width="420" height="141" loading="lazy"></span>
     </div>
   </div>
 
