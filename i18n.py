@@ -44,7 +44,8 @@ T = [
     ('Ver projetos', 'See projects', 'Ver proyectos'),
     ('alt="Logo da RL Infra"', 'alt="RL Infra logo"', 'alt="Logotipo de RL Infra"'),
     ('Quem já confiou em nós', 'Clients who trusted us', 'Quienes ya confiaron en nosotros'),
-    ('<span class="client">Governo do Estado do Rio de Janeiro</span>', '<span class="client">Government of the State of Rio de Janeiro</span>', '<span class="client">Gobierno del Estado de Río de Janeiro</span>'),
+    ('alt="Governo do Estado do Rio de Janeiro, Secretaria de Habitação"', 'alt="Government of the State of Rio de Janeiro, Housing Department"', 'alt="Gobierno del Estado de Río de Janeiro, Secretaría de Vivienda"'),
+    ('alt="PLANAVE S.A. Estudos e Projetos de Engenharia"', 'alt="PLANAVE S.A. engineering studies and design"', 'alt="PLANAVE S.A. estudios y proyectos de ingeniería"'),
     # diferenciais
     ('Por que nos contratar', 'Why work with us', 'Por qué elegirnos'),
     ('Um projeto bem coordenado evita correções caras durante a obra.', 'A well-coordinated design avoids costly fixes during construction.', 'Un proyecto bien coordinado evita correcciones costosas durante la obra.'),

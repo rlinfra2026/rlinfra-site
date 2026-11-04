@@ -171,9 +171,12 @@ section { padding-block: 5rem; scroll-margin-top: 80px; }
 
 /* Clientes */
 .clients { padding-block: 2.2rem; border-bottom: 1px solid var(--line); }
-.clients .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.5rem; }
-.clients p { font-family: var(--mono); font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
-.client { font-family: var(--display); font-weight: 700; font-stretch: 90%; color: var(--muted); opacity: .75; font-size: 1.1rem; }
+.clients .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem; }
+.clients p { flex-basis: 100%; font-family: var(--mono); font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+/* Logos de clientes têm fundo branco, então o cartão é branco nos dois temas */
+.client { display: flex; align-items: center; justify-content: center; height: 72px; min-width: 120px; padding: .5rem 1.2rem; background: #fff; border: 1px solid var(--line); border-radius: 4px; font-family: var(--display); font-weight: 800; font-stretch: 90%; font-size: 1.1rem; letter-spacing: .02em; color: #2b3542; }
+.client img { display: block; width: auto; height: auto; max-height: 48px; max-width: 200px; }
+@media (max-width: 480px) { .client { height: 60px; min-width: 0; flex: 1 1 40%; } .client img { max-height: 40px; max-width: 100%; } }
 
 /* Diferenciais */
 .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
@@ -287,10 +290,10 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   <div class="clients">
     <div class="wrap">
       <p>Quienes ya confiaron en nosotros</p>
-      <span class="client">PLANAVE</span>
+      <span class="client"><img src="../img/clientes/planave.png" alt="PLANAVE S.A. estudios y proyectos de ingeniería" width="200" height="35" loading="lazy"></span>
       <span class="client">RUMO</span>
-      <span class="client">G23</span>
-      <span class="client">Gobierno del Estado de Río de Janeiro</span>
+      <span class="client"><img src="../img/clientes/g23.png" alt="G23" width="274" height="106" loading="lazy" style="max-height:34px"></span>
+      <span class="client"><img src="../img/clientes/governo-rj.png" alt="Gobierno del Estado de Río de Janeiro, Secretaría de Vivienda" width="162" height="137" loading="lazy"></span>
       <span class="client">LIGGA</span>
       <span class="client">CEDRO</span>
     </div>
