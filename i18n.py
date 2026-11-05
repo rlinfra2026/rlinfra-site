@@ -42,7 +42,7 @@ T = [
      'Geometric road design, earthworks, stormwater drainage, pavement and road signage, developed as one integrated BIM model, with documentation ready for approval by public authorities.',
      'Diseño geométrico, movimiento de tierras, drenaje pluvial, pavimentación y señalización vial desarrollados de forma integrada en BIM, con documentación lista para la aprobación de los organismos públicos.'),
     ('Ver projetos', 'See projects', 'Ver proyectos'),
-    ('alt="Logo da RL INFRA: Projetos Geométricos, Terraplenagem, Drenagem"', 'alt="RL INFRA logo: geometric road design, earthworks, drainage"', 'alt="Logotipo de RL INFRA: diseño geométrico, movimiento de tierras, drenaje"'),
+    ('alt="Logo da RL INFRA: estrada, terraplenagem e drenagem"', 'alt="RL INFRA logo: road, earthworks and drainage"', 'alt="Logotipo de RL INFRA: carretera, movimiento de tierras y drenaje"'),
     ('Quem já confiou em nós', 'Clients who trusted us', 'Quienes ya confiaron en nosotros'),
     ('alt="Governo do Estado do Rio de Janeiro, Secretaria de Habitação"', 'alt="Government of the State of Rio de Janeiro, Housing Department"', 'alt="Gobierno del Estado de Río de Janeiro, Secretaría de Vivienda"'),
     ('alt="PLANAVE S.A. Estudos e Projetos de Engenharia"', 'alt="PLANAVE S.A. engineering studies and design"', 'alt="PLANAVE S.A. estudios y proyectos de ingeniería"'),
